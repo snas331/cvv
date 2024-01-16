@@ -15,6 +15,17 @@ class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    @Test
+    public void testCurrentStationRegularFlow2() {
+        Radio radio = new Radio(15);
+
+        radio.setCurrentStation(12);
+        int actual = radio.getCurrentStation();
+        int expected = 12;
+
+        Assertions.assertEquals(expected, actual);
+    }
+
 
     @Test
     public void testCurrentStationBelowZero() {
@@ -53,6 +64,18 @@ class RadioTest {
     }
 
     @Test
+    public void testNextResetToZero1() {
+        Radio radio = new Radio(15);
+
+        radio.setCurrentStation(14);
+        radio.next();
+        int actual = radio.getCurrentStation();
+        int expected = 0;
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void testNextResetToZero() {
         Radio radio = new Radio();
 
@@ -63,6 +86,7 @@ class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
 
 
 
@@ -79,13 +103,25 @@ class RadioTest {
     }
 
     @Test
-    public void testNextResetToNine() {
+    public void testPrevResetToNine() {
         Radio radio = new Radio();
 
         radio.setCurrentStation(0);
         radio.prev();
         int actual = radio.getCurrentStation();
         int expected = 9;
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testPrevResetToNine1() {
+        Radio radio = new Radio(15);
+
+        radio.setCurrentStation(0);
+        radio.prev();
+        int actual = radio.getCurrentStation();
+        int expected = 14;
 
         Assertions.assertEquals(expected, actual);
     }
